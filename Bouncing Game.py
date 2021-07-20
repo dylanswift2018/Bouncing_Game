@@ -118,7 +118,12 @@ class Pole:
         if self.pauseSeconds ==2 :
             self.pauseSeconds =0
 
+class Stone:
+    def __init__(self,cvs,clr):
+        self.cvs =cvs
+        self.id = canvas.create_oval(5,5,25,25,fill=clr,width=0)
 
+playing =False
 
 
     
