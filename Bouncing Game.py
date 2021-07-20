@@ -83,6 +83,42 @@ class Ball:
         if self.pole_strike(push):
             self.b= -start[0]
 
+#the pole class 
+class Pole:
+    #constructor of the game pol e
+    def __init__(self,cvs,clr):
+        self.cvs=cvs
+        self.id=canvas.create_rectangle(0,0,100,10,fill=clr)
+        self.cvs.move(self.id,200,485)
+        self.a=0
+        self.pauseSeconds=0
+        self.cvs_width=canvas.winfo_width()
+        self.cvs.bind_all("<Left>",self.turn_left)
+        self.cvs.bind_all("<Right>",self.turn_right)
+        self.cvs.bind_all("<space>",self.pauseSeconds)
+    # drawing methode of the pole 
+    def draw(self):
+        push=self.cvs.coords(self.id)
+
+        if push[0]+self.a <=0:
+            self.a =0 
+
+        if push[2]+self.a>= self.cvs_width:
+            self.a=0
+        self.cvs.move(self.id,self.a,0)
+#movement methods right and left 
+    def trun_left(self,event):
+        self.a=-3.5
+
+    def turn_right(self,event):
+        self.a=3.5
+#pause the game for 2  secs 
+    def pause(self,event):
+        self.pauseSeconds+=1
+        if self.pauseSeconds ==2 :
+            self.pauseSeconds =0
+
+
 
 
     
