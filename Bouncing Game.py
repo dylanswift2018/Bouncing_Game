@@ -57,4 +57,32 @@ class Ball:
                     continue
         return False
 
+    def pole_strike(self,push):
+        pole=self.cvs.coords(self.pole.id)
+        if push[2] >= pole[0] and push[0]<= pole[2]:
+            if push[3]>= pole[1] and push[1]<=pole[3]:
+                return True
+            return False
 
+    def draw(self):
+        self.cvs.move(self.id,self.a,self.b)
+        push=self.cvs.coords(self.id)
+
+        start = [4, 3.8, 3.6, 3.4, 3.2, 3, 2.8, 2.6]
+        random.shuffle(start)
+        if self.stone_strike(push):
+            self.b=start[0]
+        if push[1] <= 0:
+            self.b=start[0]
+        if push[3] >=self.cvs_height:
+            self.bottom_hit=True
+        if push[0] <= 0:
+            self.a=start[0]
+        if push[2] >= self.cvs_width:
+            self.a=-start[0]
+        if self.pole_strike(push):
+            self.b= -start[0]
+
+
+
+    
