@@ -7,4 +7,6 @@ import random
 stage=Tk()
 stage.title("Bouncing Ball Game")
 stage.geometry("500x570")
+photo = PhotoImage(file = "icon.png")
+stage.iconphoto(False, photo)
 stage.mainloop()
